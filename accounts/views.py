@@ -180,3 +180,5 @@ def accountSettings(request):
     template_name = 'accounts/account_settings.html'
     context = {'form': form}
     return render(request, template_name, context)
+
+# ----------------------------------------------------------------------
