@@ -17,6 +17,9 @@ from .forms import OrderForm, CreateUserForm, CustomerForm, UpdateOrderForm
 from .filters import OrderFilter
 # Create your views here.
 
+
+# ------------------------- Public Page --------------------------
+
 @unauthenticated_user
 def registerPage(request):
     form = CreateUserForm()
@@ -58,6 +61,10 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('login')
+
+# ----------------------------------------------------------------
+
+# ---------------------------- Admin -----------------------------
 
 @login_required(login_url='login')
 @admin_only
@@ -141,6 +148,10 @@ def deleteOrder(request, pk):
     context = {'item': order}
     template_name = 'accounts/delete.html'
     return render(request, template_name, context)
+
+# ----------------------------------------------------------------------
+
+# -------------------------- Customer Page -----------------------------
 
 @login_required(login_url='login')
 @allowed_users(allowed_roles=['customer'])
